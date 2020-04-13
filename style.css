@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  padding: 25px;
+  font-family: sans-serif;
+  background-color: salmon;
+}
+
+/* Option */
+
+.option {
+  display: block;
+  margin-bottom: 0.25em;
+}
+
+/* Check */
+
+:root {
+  --textColor: #454545;
+  --defaultInputColor: #454545;
+  --focusedInputColor: blue;
+  --checkedInputColor: green;
+  --disabledInputColor: #bebebe;
+  --bgColor: rgba(255,255,255, 0.5);
+}
+
+.check {
+  padding-left: 1.2em;
+  color: var(--textColor);
+}
+
+.check__input {
+  /* Modern way */
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Support IE 11 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important; 
+	width: 1px !important; 
+	overflow: hidden;
+}
+
+.check__box {
+  position: absolute;
+  margin-top: 0.1em;
+  margin-left: -1em;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: var(--bgColor);
+  border-radius: 0.05em;
+  box-shadow: 0 0 0 0.1em var(--defaultInputColor);
+}
+
+/* Checked */
+.check__input:checked + .check__box {
+  box-shadow: 
+  0 0 0 0.1em var(--checkedInputColor)
+}
+
+.check__input:checked + .check__box::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 25%;
+  background-color: transparent;
+  border-left: 2px solid var(--checkedInputColor);
+  border-bottom: 2px solid var(--checkedInputColor);
+  transform: translate(-50%, -70%) rotate(-45deg);
+}
+
+/* Focused */
+.check__input:focus + .check__box {
+  box-shadow: 
+  0 0 0 0.1em var(--defaultInputColor),
+  0 0 0 0.2em var(--focusedInputColor);
+}
+
+.check__input:checked:focus + .check__box {
+  box-shadow: 
+  0 0 0 0.1em var(--checkedInputColor),
+  0 0 0 0.2em var(--focusedInputColor);
+}
+
+/* Disabled */
+.check__input:disabled + .check__box {
+  box-shadow: 0 0 0 0.1em var(--disabledInputColor);
+  
+}
+
+.check__input:checked:disabled + .check__box::after {
+  border-color: var(--disabledInputColor);
+}
